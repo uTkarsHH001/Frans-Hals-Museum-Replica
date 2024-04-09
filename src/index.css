@@ -1,0 +1,111 @@
+
+@font-face {
+    font-family: 'raisonne';
+    src: url('../fonts/raisonne-demibold.ttf') format('woff2'), /* Modern Browsers */
+         url('../fonts/raisonne-demibold.ttf') format('woff'); /* Legacy Browsers */
+}
+
+@font-face {
+  font-family: 'twenteith';
+  src: url('../fonts/Twentieth\ Century\ W01\ XtraBdCn.ttf') format('woff2'), /* Modern Browsers */
+       url('../fonts/Twentieth\ Century\ W01\ XtraBdCn.ttf') format('woff'); /* Legacy Browsers */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+  font-family: raisonne;
+  color: bblack;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.one span:nth-child(1){
+  animation: 6s infinite slideDown;
+}
+
+.one span:nth-child(2){
+
+  animation: 6s infinite slideUp;
+}
+
+.two span:nth-child(2){
+  animation:  6s infinite slideDown1;
+}
+
+.two span:nth-child(1){
+  animation:  6s infinite slideUp1;
+}
+
+
+@keyframes slideDown{
+
+  40%{
+      transform: translateY(0);
+  }
+  44%{
+      transform: translateY(100%);
+  }
+  90%{
+      transform: translateY(100%);
+  }
+
+  95%{
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideUp{
+
+  40%{
+      transform: translateY(-100%);
+  }
+  44%{
+      transform: translateY(-200%);
+  }
+  90%{
+      transform: translateY(-200%);
+  }
+  95%{
+      transform: translateY(-100%);
+  }
+
+}
+
+@keyframes slideDown1{
+
+  40%{
+      transform: translateY(100%);
+  }
+  44%{
+      transform: translateY(200%);
+  }
+  90%{
+      transform: translateY(200%);
+  }
+
+  95%{
+      transform: translateY(100%);
+  }
+}
+
+@keyframes slideUp1{
+
+  40%{
+      transform: translateY(0);
+  }
+  44%{
+      transform: translateY(-100%);
+  }
+  90%{
+      transform: translateY(-100%);
+  }
+  95%{
+      transform: translateY(0);
+  }
+
+}
