@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import Home from './Components/Pages/Home'
 import Nav from './Components/Nav'
 import './App.css'
-
 export default function App() {
 
   const[isSmall, setIsSmall] = useState(true);
@@ -21,6 +20,10 @@ export default function App() {
     <>
       <Home isSmall={isSmall} isMd={isMd}/>
       <Nav isMd={isMd}/>
+
     </>
+
+
+    
   )
 }

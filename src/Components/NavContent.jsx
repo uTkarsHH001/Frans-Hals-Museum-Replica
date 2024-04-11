@@ -11,7 +11,7 @@ export default function NavContent({buttonStates}){
       <>
         {Object.entries(buttonStates).map(([key, value]) => {
           const backgroundColor = {
-            event: 'yellow',
+            event: 'orange',
             menu: 'orange',
             search: 'purple',
             location: 'pink',
@@ -29,7 +29,7 @@ export default function NavContent({buttonStates}){
                   return <>
                         <div key={uuidv4()} className={`p-5 flex flex-shrink-0 flex-col items-center outline-1`}>
                 
-                          <img className={` w-72 h-72 transition duration-300 ease-linear hover:outline hover:outline-3`} 
+                          <img className={` w-60 h-60 transition duration-300 ease-linear hover:outline hover:outline-3`} 
                               src={el.src} 
                               alt="" />
                           <p className="text-1xl m-3">{el.title}</p>
@@ -107,7 +107,7 @@ export default function NavContent({buttonStates}){
             return (
               <div
                 key={key}
-                className={`absolute bottom-0 w-full h-3/4 overflow-x-hidden overflow-y-scroll bg-${backgroundColor} text-center text-bblack lg:w-96 lg:h-full lg:p-12`}
+                className={`absolute bottom-0 w-full h-3/4 overflow-x-hidden overflow-y-scroll bg-${backgroundColor} text-center text-bblack lg:w-96 lg:h-full lg:p-12 z-0`}
               >
                 {content}
               </div>

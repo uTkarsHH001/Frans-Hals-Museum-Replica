@@ -60,7 +60,7 @@ export default function Nav({isMd}) {
 
         <div className='absolute w-full top-0'>
           <div className={`bg-yellow relative w-full p-3 ${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `` : `z-30`}`}>
-          <Dropdown/>
+          <Dropdown buttonStates={buttonStates}/>
             {!isMd && 
             <div>
               <div className="relative text-lg list-none flex gap-10 justify-center">
@@ -116,7 +116,7 @@ export default function Nav({isMd}) {
       <div className={`w-full ${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `h-[100vh]` : ``} fixed bottom-0`}>
               
               {/* Side Navbar buttons */}
-        <div className={`${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `lg:bg-bblack lg:h-full lg:w-12` : ``}`}>
+        <div className={`${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `lg:bg-bblack lg:h-full lg:w-12` : ``} relative z-20`}>
           <div className={`w-full h-46 bg-bblack fixed bottom-0 flex 
           justify-around items-center text-4xl text-yellow lg:flex-col  lg:w-12 lg:h-80 lg:top-40 lg:rounded-r-3xl lg:text-2xl ${isHover.li ? `-left-full` : `left-0`} transition-left duration-700`}>
             
@@ -131,9 +131,9 @@ export default function Nav({isMd}) {
         </div>
         
               {/* Side Navbar Content */}
-        <div className={`w-full h-[92%] bg-black bg-opacity-80  absolute text-yellow lg:left-12 lg:h-full 
+        <div className={`w-full h-[94%] bg-black bg-opacity-80  absolute text-yellow lg:left-12 lg:h-full 
              ${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `top-0` : `top-full`} 
-             lg:${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `left-0` : `-left-full`}`}>
+             lg:${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `left-0` : `-left-full`} z-10`}>
           <NavContent buttonStates={buttonStates}/>
         </div>
 
@@ -146,5 +146,11 @@ export default function Nav({isMd}) {
 }
 
 Nav.propTypes = {
-  isMd : PropTypes.bool
+  isMd : PropTypes.bool,
+  buttonStates: PropTypes.shape({
+    event: PropTypes.bool,
+    menu: PropTypes.bool,
+    search: PropTypes.bool,
+    location: PropTypes.bool
+  }).isRequired
 }
