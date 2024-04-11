@@ -14,7 +14,7 @@ export default function NavContent({buttonStates}){
             event: 'yellow',
             menu: 'orange',
             search: 'purple',
-            location: 'lPink',
+            location: 'pink',
             openingHours: 'yellow'
           }[key];
   
@@ -83,6 +83,7 @@ export default function NavContent({buttonStates}){
                 </div>
               </>
             ),
+            
             openingHours:
             (
               <>

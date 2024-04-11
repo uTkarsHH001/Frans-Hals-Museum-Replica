@@ -17,7 +17,6 @@ export default function App() {
       setIsSmall(window.innerWidth < 640);
       setIsMd(window.innerWidth < 1000);
     });
-
   return (
     <>
       <Home isSmall={isSmall} isMd={isMd}/>
@@ -25,4 +24,3 @@ export default function App() {
     </>
   )
 }
-

@@ -13,7 +13,7 @@ export default {
       colors :{
         yellow : '#FCE373',
         pink : '#CCA69A',
-        lPink : '#F8B5B8',
+        pinkk : '#F8B5B8',
         orange : '#F37449',
         lightOrange : '#F9A04E',
         purple : '#A385BD',
