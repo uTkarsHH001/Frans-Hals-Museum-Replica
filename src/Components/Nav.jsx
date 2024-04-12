@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BsCalendar2Event } from "react-icons/bs";
 import { IoTicketOutline, IoSearch } from "react-icons/io5";
 import { RiMenu5Fill } from "react-icons/ri";
+import { GiCrossMark } from "react-icons/gi";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { FaRegClock } from "react-icons/fa";
 import Dropdown from './Dropdown'
@@ -31,12 +32,16 @@ export default function Nav({isMd}) {
     openingHours : false
   })
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const handleClick = (buttonName) => {
     const newButtonStates = {...buttonStates};
     Object.keys(newButtonStates).forEach(name => {
       newButtonStates[name] = name == buttonName ? !newButtonStates[name] : false;
     }) 
-    setButtonStates(newButtonStates);   
+    
+    setButtonStates(newButtonStates);  
+    setIsOpen(newButtonStates.event || newButtonStates.menu || newButtonStates.search || newButtonStates.location || newButtonStates.openingHours)  
   }
 
   function setHover(item){
@@ -54,13 +59,14 @@ export default function Nav({isMd}) {
     })
     setIsHover(newIsHover);
   }
+
   return (
     <>
               {/* Navbar Menu Start*/}
 
         <div className='absolute w-full top-0'>
-          <div className={`bg-yellow relative w-full p-3 ${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `` : `z-30`}`}>
-          <Dropdown buttonStates={buttonStates}/>
+          <div className={`bg-yellow relative w-full p-3 ${ isOpen ? `` : `z-30`}`}>
+          <Dropdown isOpen={isOpen}/>
             {!isMd && 
             <div>
               <div className="relative text-lg list-none flex gap-10 justify-center">
@@ -113,16 +119,16 @@ export default function Nav({isMd}) {
 
               {/* Side Navbar Start */}
 
-      <div className={`w-full ${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `h-[100vh]` : ``} fixed bottom-0`}>
+      <div className={`w-full ${ isOpen ? `h-[100vh]` : ``} fixed bottom-0`}>
               
               {/* Side Navbar buttons */}
-        <div className={`${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `lg:bg-bblack lg:h-full lg:w-12` : ``} relative z-20`}>
+        <div className={`${ isOpen ? `lg:bg-bblack lg:h-full lg:w-12` : ``} relative z-20`}>
           <div className={`w-full h-46 bg-bblack fixed bottom-0 flex 
           justify-around items-center text-4xl text-yellow lg:flex-col  lg:w-12 lg:h-80 lg:top-40 lg:rounded-r-3xl lg:text-2xl ${isHover.li ? `-left-full` : `left-0`} transition-left duration-700`}>
             
             <button onClick={() => handleClick('event')}><BsCalendar2Event /></button>
             <button ><a href="#"><IoTicketOutline /></a></button>
-            {isMd && <button onClick={() => handleClick('menu')} className='bg-yellow w-20 border border-12 border-bblack p-4 rounded-full relative -top-2'><RiMenu5Fill className='fill-black text-5xl mx-auto' /></button>}
+            {isMd && <button onClick={() => handleClick('menu')} className='bg-yellow w-20 border border-12 border-bblack p-4 rounded-full relative -top-2'>{buttonStates.menu ? <GiCrossMark className='fill-black text-5xl mx-auto' /> : <RiMenu5Fill className='fill-black text-5xl mx-auto' />}</button>}
             <button onClick={ () => handleClick('search')}><IoSearch /></button>
             <button onClick={() => handleClick('location')}><MdOutlineLocationOn /></button>
             {!isMd && <button onClick={() => handleClick('openingHours')}><FaRegClock /></button>}
@@ -132,8 +138,8 @@ export default function Nav({isMd}) {
         
               {/* Side Navbar Content */}
         <div className={`w-full h-[94%] bg-black bg-opacity-80  absolute text-yellow lg:left-12 lg:h-full 
-             ${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `top-0` : `top-full`} 
-             lg:${ buttonStates.event || buttonStates.menu || buttonStates.search || buttonStates.location || buttonStates.openingHours ? `left-0` : `-left-full`} z-10`}>
+             ${ isOpen ? `top-0` : `top-full`} 
+             lg:${ isOpen ? `left-0` : `-left-full`} z-10`}>
           <NavContent buttonStates={buttonStates}/>
         </div>
 
@@ -147,10 +153,4 @@ export default function Nav({isMd}) {
 
 Nav.propTypes = {
   isMd : PropTypes.bool,
-  buttonStates: PropTypes.shape({
-    event: PropTypes.bool,
-    menu: PropTypes.bool,
-    search: PropTypes.bool,
-    location: PropTypes.bool
-  }).isRequired
 }

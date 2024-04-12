@@ -1,18 +1,54 @@
+import { useState } from 'react'
 import { events } from './events'
 import { v4 as uuidv4} from 'uuid'
 import ViewAllEventButton from './ViewAllEventButton';
+import Visit from './Visit'
+import ArtnNews from './ArtnNews'
+import About from './About'
+import Support from './Support'
 import { CiSearch, CiCircleInfo } from 'react-icons/ci'
 import { GiIndianPalace, GiByzantinTemple } from "react-icons/gi";
+import { TiArrowRightOutline, TiArrowLeftOutline } from "react-icons/ti";
+
 import PropTypes from 'prop-types';
 
 export default function NavContent({buttonStates}){
+
+    const[isClick, setIsClick] = useState(false);
     
+    const[menuStates, setMenuStates] = useState({
+      visit: false,
+      art: false,
+      about: false,
+      support: false
+    })
+
+    function handleClick(menuName){
+      const newMenuStates = {...menuStates};
+      Object.keys(newMenuStates).forEach(name => {
+
+        newMenuStates[name] = name == menuName ? !menuStates[name] : false;
+      })
+      setMenuStates(newMenuStates);
+      setIsClick(newMenuStates.visit || newMenuStates.art || newMenuStates.about || newMenuStates.support);
+    }
+
+    function setFalse(){
+      const newMenuStates = {...menuStates};
+      Object.keys(newMenuStates).forEach(name => {
+
+        newMenuStates[name] = false;
+      })
+      setMenuStates(newMenuStates)
+
+    }
+
     return (
       <>
         {Object.entries(buttonStates).map(([key, value]) => {
           const backgroundColor = {
             event: 'orange',
-            menu: 'orange',
+            menu: 'pink',
             search: 'purple',
             location: 'pink',
             openingHours: 'yellow'
@@ -48,6 +84,34 @@ export default function NavContent({buttonStates}){
             menu: 
             (
               <>   
+                <div className="h-1/4 w-2/4 mx-auto relative top-80">
+                  <ul className='text-2xl flex flex-col gap-16 justify-center items-center'>
+                    <li><button onClick={() => handleClick('visit')} className='w-72'>VISIT <TiArrowRightOutline className='float-right'/></button></li>
+                    <li><button onClick={() => handleClick('art')} className='w-72'>ART & NEWS<TiArrowRightOutline className='float-right'/></button></li>
+                    <li><button onClick={() => handleClick('about')} className='w-72'>ABOUT <TiArrowRightOutline className='float-right'/></button></li>
+                    <li><button onClick={() => handleClick('support')} className='w-72'>SUPPORT <TiArrowRightOutline className='float-right'/></button></li>
+                  </ul>
+                </div>
+                
+                <div className={`w-full h-3/4 absolute bottom-0 overflow-hidden ${isClick ? `left-0` : `left-full`} transition-left duration-700`}>
+                  <h1 className='text-2xl p-4'><TiArrowLeftOutline className='float-left relative left-20'/>
+                    <button onClick={() => {
+                                            setIsClick(false);
+                                            setFalse();
+                                           }}>
+                                              {menuStates.visit && <p>Visit</p>}
+                                              {menuStates.art && <p>Art</p>}
+                                              {menuStates.about && <p>About</p>}
+                                              {menuStates.support && <p>Support</p>}
+                    </button>
+                  </h1>
+                  <div className='bg-yellow w-full h-full'>
+                    {menuStates.visit && <Visit/>}
+                    {menuStates.art && <ArtnNews/>}
+                    {menuStates.about && <About/>}
+                    {menuStates.support && <Support/>}
+                  </div>
+                </div>
               </>
             ),
 
@@ -79,7 +143,7 @@ export default function NavContent({buttonStates}){
                             </div>
                         </div>
                         <div className='font-raisonne text-center'>
-                  <button className="bg-[#231F20] text-yellow mt-5 px-10 py-1 rounded-full"><CiCircleInfo className="text-3xl h-12 inline fill-yellow transition duration-300 hover:opacity-35"  /> Practical Information</button>
+                  <button className="bg-[#231F20] text-yellow mx-5 mb-10 px-10 py-1 rounded-full"><CiCircleInfo className="text-3xl h-12 inline fill-yellow transition duration-300 hover:opacity-35"  /> Practical Information</button>
                 </div>
               </>
             ),
@@ -107,7 +171,7 @@ export default function NavContent({buttonStates}){
             return (
               <div
                 key={key}
-                className={`absolute bottom-0 w-full h-3/4 overflow-x-hidden overflow-y-scroll bg-${backgroundColor} text-center text-bblack lg:w-96 lg:h-full lg:p-12 z-0`}
+                className={`absolute bottom-0 w-full ${buttonStates.menu ? `h-full` : `h-3/4`} overflow-x-hidden overflow-y-scroll bg-${backgroundColor} text-center text-bblack lg:w-96 lg:h-full lg:p-12 z-0`}
               >
                 {content}
               </div>

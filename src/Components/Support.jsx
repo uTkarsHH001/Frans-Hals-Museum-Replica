@@ -2,19 +2,17 @@
 export default function Support(){
     return(
         <>
-            
-            <div className="columns font-thin text-lg relative lg:left-[60%] xl:left-[63%]">
-                <div className="column float-left px-12">
+            <div className="h-full p-4 text-lg relative lg:left-[62%] xl:left-[65%]">
+                <div className="column">
                     <ul>
-                    <li><a className="hover:underline" href="#">Exhibitions & Events</a></li>
-                    <li><a className="hover:underline" href="#">Discover the collection</a></li>
-                    <li><a className="hover:underline" href="#">More about the collection</a></li>
-                    <li><a className="hover:underline" href="#">News</a></li>
-                    <li><a className="hover:underline" href="#">Research</a></li>
+                        <li className = "mt-3"><a className="hover:underline " href="#">Exhibitions & Events</a></li>
+                        <li className = "mt-3"><a className="hover:underline " href="#">Discover the collection</a></li>
+                        <li className = "mt-3"><a className="hover:underline " href="#">More about the collection</a></li>
+                        <li className = "mt-3"><a className="hover:underline " href="#">News</a></li>
+                        <li className = "mt-3"><a className="hover:underline " href="#">Research</a></li>
                     </ul>
                 </div>
             </div>
-
         </>
     )
 }
