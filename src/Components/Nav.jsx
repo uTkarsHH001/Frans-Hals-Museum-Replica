@@ -77,8 +77,7 @@ export default function Nav({isMd}) {
                 <li><a onMouseEnter={() => setHover('support')} href="#">SUPPORT</a></li>
               </div>
 
-              <button className="bg-[#231F20] text-yellow px-10 py-1 rounded-full float-right absolute top-10 right-10"><IoTicketOutline className="text-5xl inline p-3 fill-yellow transition duration-300 hover:opacity-35"/> Buy Tickets</button>
-             
+              <button className="bg-[#231F20] text-yellow px-10 py-1 rounded-full float-right absolute top-10 right-10"><IoTicketOutline className="text-5xl inline p-3 fill-yellow transition duration-300 hover:opacity-35"/> Buy Tickets</button> 
             </div>
             }
 
@@ -123,8 +122,7 @@ export default function Nav({isMd}) {
               
               {/* Side Navbar buttons */}
         <div className={`${ isOpen ? `lg:bg-bblack lg:h-full lg:w-12` : ``} relative z-20`}>
-          <div className={`w-full h-46 bg-bblack fixed bottom-0 flex 
-          justify-around items-center text-4xl text-yellow lg:flex-col  lg:w-12 lg:h-80 lg:top-40 lg:rounded-r-3xl lg:text-2xl ${isHover.li ? `-left-full` : `left-0`} transition-left duration-700`}>
+          <div className={`w-full h-46 bg-bblack fixed bottom-0 flex justify-around items-center text-4xl text-yellow lg:flex-col lg:w-12 lg:h-80 lg:top-40 lg:rounded-r-3xl lg:text-2xl ${isHover.li ? `-left-full` : `left-0`} transition-left duration-700`}>
             
             <button onClick={() => handleClick('event')}><BsCalendar2Event /></button>
             <button ><a href="#"><IoTicketOutline /></a></button>
@@ -142,11 +140,8 @@ export default function Nav({isMd}) {
              lg:${ isOpen ? `left-0` : `-left-full`} z-10`}>
           <NavContent buttonStates={buttonStates}/>
         </div>
-
       </div>
-
               {/* Side Navbar End */}
-
     </>
   );
 }
